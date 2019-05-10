@@ -20,4 +20,15 @@ img.onload = function () {
     var data = originalCanvas.getImageData(0, 0, w, h);
     grayscaleCanvas.putImageData(grayscale(data), 0, 0);
 
+    // drawing sobel image on canvas
+    var sobelCanvas = document.getElementById('sobel').getContext('2d');
+    sobelCanvas.canvas.width = w;
+    sobelCanvas.canvas.height = h;
+    var data2 = originalCanvas.getImageData(0, 0, w, h);
+
+    var sobelData = Sobel(data2);
+    var sobelImageData = sobelData.toImageData();
+
+    sobelCanvas.putImageData(sobelImageData, 0, 0);
+
 }
