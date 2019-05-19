@@ -13,11 +13,85 @@ function grayscale(imgData) {
     return imgData;
 }
 
-function convolve(imgData, kernel){
+function sobel(pixels) {
 
-    var src = imgData.data;
-    var height = imgData.height;
-    var width = imgData.width;
+    var operatorX = [
+        1, 2, 1,
+        0, 0, 0,
+        -1, -2, -1]
+
+    var operatorY = [
+        1, 0, -1,
+        2, 0, -2,
+        1, 0, -1]
+
+    pixels = grayscale(pixels)
+    pixels = xyConvolution(pixels, operatorX, operatorY)
     
+    return pixels
+}
+
+function prewitt(pixels) {
+
+    var operatorX = [
+        -1, -1, -1,
+        0, 0, 0,
+        1, 1, 1]
+
+    var operatorY = [
+        -1, 0, 1,
+        -1, 0, 1,
+        -1, 0, 1]
+
+    pixels = grayscale(pixels)
+    pixels = xyConvolution(pixels, operatorX, operatorY)
     
+    return pixels
+}
+
+function roberts(pixels) {
+
+    var operatorX = [
+        1, 0,
+        0, -1]
+
+    var operatorY = [
+        0, 1,
+        -1, 0]
+
+    pixels = grayscale(pixels)
+    pixels = xyConvolution(pixels, operatorX, operatorY)
+    
+    return pixels
+}
+
+function laplacian(pixels) {
+
+    var operator = [
+        0, 0, 1, 0, 0,
+        0, 1, 2, 1, 0,
+        1, 2, -16, 2, 1,
+        0, 1, 2, 1, 0,
+        0, 0, 1, 0, 0]
+
+    pixels = grayscale(pixels)
+    pixels = convolution(pixels, operator)
+    
+    return pixels
+}
+
+function gaussianBlur(pixels) {
+
+    var divider = 159
+
+    var operator = [
+        2/divider, 4/divider, 5/divider, 4/divider, 2/divider,
+        4/divider, 9/divider,12/divider, 9/divider, 4/divider,
+        5/divider,12/divider,15/divider,12/divider, 5/divider,
+        4/divider, 9/divider,12/divider, 9/divider, 4/divider,
+        2/divider, 4/divider, 5/divider, 4/divider, 2/divider]
+
+    pixels = convolution(pixels, operator)
+    
+    return pixels
 }
