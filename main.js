@@ -3,58 +3,43 @@ img.src = "image.jpg";
 
 img.onload = function () {
 
-    // height and width of loaded image
-    var w = img.width;
-    var h = img.height;
-    var data;
-
     // drawing original image on canvas
     var originalCanvas = document.getElementById('original').getContext('2d');
-    originalCanvas.canvas.width = w;
-    originalCanvas.canvas.height = h;
+    originalCanvas.canvas.width = img.width;
+    originalCanvas.canvas.height = img.height;
     originalCanvas.drawImage(img, 0, 0);
 
+    var data = originalCanvas.getImageData(0, 0, originalCanvas.canvas.width, originalCanvas.canvas.height);
+
     // drawing blurred image on canvas
-    var blurredCanvas = document.getElementById('blurred').getContext('2d');
-    blurredCanvas.canvas.width = w;
-    blurredCanvas.canvas.height = h;
-    data = originalCanvas.getImageData(0, 0, w, h);
-    blurredCanvas.putImageData(gaussianBlur(data), 0, 0);
+    setImage('blurred', gaussianBlur(data));
 
     // drawing grayscale image on canvas
-    var grayscaleCanvas = document.getElementById('grayscale').getContext('2d');
-    grayscaleCanvas.canvas.width = w;
-    grayscaleCanvas.canvas.height = h;
-    data = originalCanvas.getImageData(0, 0, w, h);
-    grayscaleCanvas.putImageData(grayscale(data), 0, 0);
+    setImage('grayscale', grayscale(data));
 
     // drawing sobel image on canvas
-    var sobelCanvas = document.getElementById('sobel').getContext('2d');
-    sobelCanvas.canvas.width = w;
-    sobelCanvas.canvas.height = h;
-    data = originalCanvas.getImageData(0, 0, w, h);
-    sobelCanvas.putImageData(sobel(data), 0, 0);
+    setImage('sobel', sobel(data));
 
     // drawing prewitt image on canvas
-    var prewittCanvas = document.getElementById('prewitt').getContext('2d');
-    prewittCanvas.canvas.width = w;
-    prewittCanvas.canvas.height = h;
-    data = originalCanvas.getImageData(0, 0, w, h);
-    prewittCanvas.putImageData(prewitt(data), 0, 0);
+    setImage('prewitt', prewitt(data));
 
     // drawing roberts image on canvas
-    var robertsCanvas = document.getElementById('roberts').getContext('2d');
-    robertsCanvas.canvas.width = w;
-    robertsCanvas.canvas.height = h;
-    data = originalCanvas.getImageData(0, 0, w, h);
-    robertsCanvas.putImageData(roberts(data), 0, 0);
+    setImage('roberts', roberts(data));
 
     // drawing laplacian image on canvas
-    var laplacianCanvas = document.getElementById('laplacian').getContext('2d');
-    laplacianCanvas.canvas.width = w;
-    laplacianCanvas.canvas.height = h;
-    data = originalCanvas.getImageData(0, 0, w, h);
-    //data = blurredCanvas.getImageData(0, 0, w, h);
-    laplacianCanvas.putImageData(laplacian(data), 0, 0);
+    setImage('laplacian', laplacian(data));
 
+    // drawing blurred laplacian image on canvas
+    setImage('blurredLaplacian', laplacian(gaussianBlur(data)));
+
+    // drawing canny image on canvas
+    setImage('canny', canny(data));
+
+}
+
+function setImage(canvasId, data) {
+    let tempCanvas = document.getElementById(canvasId).getContext('2d');
+    tempCanvas.canvas.width = data.width;
+    tempCanvas.canvas.height = data.height;
+    tempCanvas.putImageData(data, 0, 0);
 }
