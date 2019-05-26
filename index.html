@@ -1,22 +1,63 @@
 <html lang="en">
+<link rel="icon"  type="image/x-icon" href="favicon.ico"/>
+<link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edge Detection</title>
-    <link rel="icon"  type="image/x-icon" href="favicon.ico"/>
 </head>
 <body style="background-color:#323639">
 
-    <canvas id="original"></canvas>
-    <canvas id="blurred"></canvas>
-    <canvas id="grayscale"></canvas>
-    <canvas id="sobel"></canvas>
-    <canvas id="prewitt"></canvas>
-    <canvas id="roberts"></canvas>
-    <canvas id="laplacian"></canvas>
-    <canvas id="blurredLaplacian"></canvas>
-    <canvas id="canny"></canvas>
+    <div class="container">
+        <div class="box">
+            <p>Original</p>
+            <canvas id="original"></canvas>    
+        </div>
+
+        <div class="box">
+            <p>Blurred</p>
+            <canvas id="blurred""></canvas>
+        </div>
+
+        <div class="box">
+            <p>Grayscale</p>
+            <canvas id="grayscale"></canvas>
+        </div>
+
+        <div class="box">
+            <p>Sobel</p>
+            <canvas id="sobel"></canvas>
+        </div>
+
+        <div class="box">
+            <p>Prewitt</p>
+            <canvas id="prewitt"></canvas>
+        </div>
+
+        <div class="box">
+            <p>Roberts</p>
+            <canvas id="roberts"></canvas>
+        </div>
+
+        <div class="box">
+            <p>Laplacian</p>
+            <canvas id="laplacian"></canvas>
+        </div>
+
+        <div class="box">
+            <p>Blurred + Laplacian</p>
+            <canvas id="blurredLaplacian"></canvas>
+        </div>
+
+        <div class="box">
+            <p>Canny</p>
+            <canvas id="canny"></canvas>
+        </div>
+    </div>
+
+
+
 
     <script src="main.js"></script>
     <script src="filters.js"></script>
