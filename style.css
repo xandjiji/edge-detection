@@ -21,3 +21,8 @@ p {
     color: white;
     word-spacing: 0.2em;
 }
+
+.custom-file-upload {
+    font-family: Verdana;
+    color: white;
+}
