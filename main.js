@@ -7,6 +7,22 @@ var uploadedImage = new Image();
 
 img.onload = function () {
 
+    update(img);
+
+}
+
+fileInput.onchange = function(event) {
+    uploadedImage.src = window.URL.createObjectURL(event.target.files[0]);
+};
+
+uploadedImage.onload = function () {
+
+    update(uploadedImage);
+
+}
+
+function update(img) {
+
     // drawing original image on canvas
     var originalCanvas = document.getElementById('original').getContext('2d');
     originalCanvas.canvas.width = img.width;
@@ -46,44 +62,4 @@ function setImage(canvasId, data) {
     tempCanvas.canvas.width = data.width;
     tempCanvas.canvas.height = data.height;
     tempCanvas.putImageData(data, 0, 0);
-}
-
-fileInput.onchange = function(event) {
-    uploadedImage.src = window.URL.createObjectURL(event.target.files[0]);
-};
-
-uploadedImage.onload = function () {
-
-    // drawing original image on canvas
-    var originalCanvas = document.getElementById('original').getContext('2d');
-    originalCanvas.canvas.width = uploadedImage.width;
-    originalCanvas.canvas.height = uploadedImage.height;
-    originalCanvas.drawImage(uploadedImage, 0, 0);
-
-    var data = originalCanvas.getImageData(0, 0, originalCanvas.canvas.width, originalCanvas.canvas.height);
-
-    // drawing blurred image on canvas
-    setImage('blurred', gaussianBlur(data));
-
-    // drawing grayscale image on canvas
-    setImage('grayscale', grayscale(data));
-
-    // drawing sobel image on canvas
-    setImage('sobel', sobel(data));
-
-    // drawing prewitt image on canvas
-    setImage('prewitt', prewitt(data));
-
-    // drawing roberts image on canvas
-    setImage('roberts', roberts(data));
-
-    // drawing laplacian image on canvas
-    setImage('laplacian', laplacian(data));
-
-    // drawing blurred laplacian image on canvas
-    setImage('blurredLaplacian', laplacian(gaussianBlur(data)));
-
-    // drawing canny image on canvas
-    setImage('canny', canny(data));
-
 }
