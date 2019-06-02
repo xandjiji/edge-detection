@@ -1,17 +1,15 @@
 <html lang="en">
-<link rel="icon"  type="image/x-icon" href="favicon.ico"/>
-<link rel="stylesheet" href="style.css">
+<link rel="icon"  type="image/x-icon" href="styles/favicon.ico"/>
+<link rel="stylesheet" href="styles/style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edge Detection</title>
 </head>
-<body style="background-color:#323639">
+<body>
 
-    <label class="custom-file-upload">
-        <input type="file" id="file">
-    </label>
+    <input type="file" id="file">
 
     <div class="container">
         <div class="box">
@@ -60,10 +58,14 @@
         </div>
     </div>
 
-    <script src="main.js"></script>
-    <script src="filters.js"></script>
-    <script src="convolutions.js"></script>
-    <script src="xfom.js"></script>
+    <p align="center">Figure of Merit (similarity between operators)</p>
+    <div id="tabela" align="center"></div>
+
+    <script src="lib/main.js"></script>
+    <script src="lib/filters.js"></script>
+    <script src="lib/convolutions.js"></script>
+    <script src="lib/xfom.js"></script>
+    <script src="lib/tableBuilder.js"></script>
 
 </body>
 </html>
