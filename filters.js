@@ -2,7 +2,7 @@ function grayscale(imgData) {
     
     var tempData = imgData;
 
-        for(var i = 0; i < tempData.data.length; i += 4){
+    for(var i = 0; i < tempData.data.length; i += 4){
 
         var r = tempData.data[i];
         var g = tempData.data[i+1];
@@ -55,10 +55,12 @@ function sobel(imgData) {
 function sobelHorizontal(imgData) {
 
     var divider = 4
-    var operator =  [1/divider, 2/divider, 1/divider,
-                    0, 0, 0,
-                    -1/divider, -2/divider, -1/divider];
+    var operator = [
+        1/divider, 2/divider, 1/divider,
+        0, 0, 0,
+        -1/divider, -2/divider, -1/divider];
 
+    imgData = grayscale(imgData);
     imgData = convolution(imgData, operator);
     
     return imgData;
@@ -67,10 +69,12 @@ function sobelHorizontal(imgData) {
 function sobelVertical(imgData) {
 
     var divider = 4;
-    var operator =  [1/divider, 0, -1/divider,
-                    2/divider, 0, -2/divider,
-                    1/divider, 0, -1/divider];
+    var operator = [
+        1/divider, 0, -1/divider,
+        2/divider, 0, -2/divider,
+        1/divider, 0, -1/divider];
 
+    imgData = grayscale(imgData);
     imgData = convolution(imgData, operator);
     
     return imgData;
@@ -132,7 +136,10 @@ function smallLaplacian(imgData) {
         -1, 4, -1,
         0, -1, 0];
     
-    return convolution(imgData, operator);
+    imgData = grayscale(imgData);
+    imgData = convolution(imgData, operator);
+
+    return imgData;
 }
 
 function gaussianBlur(imgData) {
@@ -154,7 +161,6 @@ function gaussianBlur(imgData) {
 function canny(imgData) {
 
     var tempData = imgData;
-    
     tempData = gaussianBlur(tempData);
 
     var deltaX = sobelHorizontal(tempData);

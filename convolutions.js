@@ -11,8 +11,8 @@ function convolution(imgData, weights) {
     var temporaryCtx = temporaryCanvas.getContext('2d');
     var outputData = temporaryCtx.createImageData(canvasWidth, canvasHeight);
 
-    for (var y = 0; y < canvasHeight; y++) {
-        for (var x = 0; x < canvasWidth; x++) {
+    for (var y = 1; y < canvasHeight-1; y++) {
+        for (var x = 1; x < canvasWidth-1; x++) {
 
             var dstOff = (y * canvasWidth + x) * 4;
             var sumReds = 0;
@@ -59,8 +59,8 @@ function xyConvolution(imgData, weights1, weights2) {
     var temporaryCtx = temporaryCanvas.getContext('2d');
     var outputData = temporaryCtx.createImageData(canvasWidth, canvasHeight);
 
-    for (var y = 0; y < canvasHeight; y++) {
-        for (var x = 0; x < canvasWidth; x++) {
+    for (var y = 1; y < canvasHeight-1; y++) {
+        for (var x = 1; x < canvasWidth-1; x++) {
 
             var dstOff = (y * canvasWidth + x) * 4;
             var sumRedsX = 0;
@@ -126,9 +126,9 @@ function gradient(deltaX, deltaY) {
     var outputData = temporaryCtx.createImageData(canvasWidth, canvasHeight);
     var outputDataDir = new Array(srcX.length).fill(0);
 
-    for (var y = 0; y < canvasHeight; y++) {
+    for (var y = 1; y < canvasHeight-1; y++) {
 
-        for (var x = 0; x < canvasWidth; x++) {
+        for (var x = 1; x < canvasWidth-1; x++) {
 
             var dstOff = (y * canvasWidth + x) * 4;
 
@@ -160,9 +160,9 @@ function nonMaximumSuppression(imgData, direction) {
     var temporaryCtx = temporaryCanvas.getContext('2d');
     var outputData = temporaryCtx.createImageData(canvasWidth, canvasHeight);
 
-    for (var y = 0; y < canvasHeight; y++) {
+    for (var y = 1; y < canvasHeight-1; y++) {
 
-        for (var x = 0; x < canvasWidth; x++) {
+        for (var x = 1; x < canvasWidth-1; x++) {
 
             var dstOff = (y * canvasWidth + x) * 4;
             var maxReds = src[dstOff];
