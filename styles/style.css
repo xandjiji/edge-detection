@@ -15,6 +15,11 @@
     align-items:center;
 }
 
+.topContainer {
+    display:flex;
+    justify-content: space-between;
+}
+
 body {
     font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
     font-size: 16px;
@@ -48,4 +53,21 @@ tr:nth-child(odd) {
 
 td:hover {
     background: #808080;
+}
+
+a:link {
+    color: #9d95d0;
+    text-decoration: none;
+}
+a:visited {
+    color: #9d95d0;
+    text-decoration: none;
+}
+a:hover {
+    color: #493e8e;
+    text-decoration: none;
+}
+a:active {
+    color: #483d8b;
+    text-decoration: none;
 }
